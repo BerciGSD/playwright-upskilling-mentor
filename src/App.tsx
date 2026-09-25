@@ -40,7 +40,7 @@ export function isBoilerplateExplanation(text?: string): boolean {
 }
 
 function getInitialProgress(): StudentProgress {
-  // Pre-completed drills for modules 1-5 (including all 6 POM drills: 5.1 through 5.6)
+  // Pre-completed drills for modules 1-5 (5 drills per module: 25 total)
   const initialCompletedDrills = [
     ...MODULES_DATA.slice(0, 5).flatMap((m) => m.drills.map((d) => d.id)),
   ];
