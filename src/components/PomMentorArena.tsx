@@ -40,7 +40,18 @@ interface PomMentorProgress {
 }
 
 const POM_PROGRESS_STORAGE_KEY = 'playwright_pom_mentor_v1';
-const USER_SUBMITTED_DRILL_IDS = ['pom-drill-1-1', 'pom-drill-1-2', 'pom-drill-1-3', 'pom-drill-1-4', 'pom-drill-1-5'];
+const USER_SUBMITTED_DRILL_IDS = [
+  'pom-drill-1-1',
+  'pom-drill-1-2',
+  'pom-drill-1-3',
+  'pom-drill-1-4',
+  'pom-drill-1-5',
+  'pom-drill-2-1',
+  'pom-drill-2-2',
+  'pom-drill-2-3',
+  'pom-drill-2-4',
+  'pom-drill-2-5',
+];
 
 function getInitialMentorProgress(): PomMentorProgress {
   const defaultSavedCode: Record<string, string> = {};
@@ -52,25 +63,32 @@ function getInitialMentorProgress(): PomMentorProgress {
   });
 
   const level1Skills = POM_LEVELS[0].focusSkills;
+  const level2Skills = POM_LEVELS[1].focusSkills;
+  const initialMasteredSkills = [...level1Skills, ...level2Skills];
   const initialScores: Record<string, number> = {};
   POM_LEVELS.flatMap(lvl => lvl.focusSkills).forEach(skill => {
-    initialScores[skill] = level1Skills.includes(skill) ? 4 : 0;
+    initialScores[skill] = initialMasteredSkills.includes(skill) ? 4 : 0;
   });
 
   const defaultProgress: PomMentorProgress = {
-    currentDrillId: 'pom-drill-1-5',
+    currentDrillId: 'pom-drill-2-5',
     drillAttempts: {
       'pom-drill-1-1': 1,
       'pom-drill-1-2': 1,
       'pom-drill-1-3': 1,
       'pom-drill-1-4': 1,
       'pom-drill-1-5': 1,
+      'pom-drill-2-1': 1,
+      'pom-drill-2-2': 1,
+      'pom-drill-2-3': 1,
+      'pom-drill-2-4': 1,
+      'pom-drill-2-5': 1,
     },
     masteryScores: initialScores,
     completedDrillIds: [...USER_SUBMITTED_DRILL_IDS],
     savedCode: defaultSavedCode,
     revealedHints: {},
-    skillsMastered: [...level1Skills],
+    skillsMastered: [...initialMasteredSkills],
     skillsNeedingPractice: []
   };
 
@@ -82,8 +100,14 @@ function getInitialMentorProgress(): PomMentorProgress {
         ...defaultSavedCode,
         ...(parsed.savedCode || {})
       };
+      USER_SUBMITTED_DRILL_IDS.forEach(id => {
+        const drill = POM_MENTOR_DRILLS.find(d => d.id === id);
+        if (drill && (!mergedSavedCode[drill.id] || mergedSavedCode[drill.id].trim() === '')) {
+          mergedSavedCode[drill.id] = drill.validation.solutionCode;
+        }
+      });
 
-      // Keep user's Level 1 submitted drills plus any completed drills across all levels
+      // Keep user's Level 1 & Level 2 submitted drills plus any completed drills across all levels
       const validCompleted = Array.isArray(parsed.completedDrillIds)
         ? Array.from(new Set([...USER_SUBMITTED_DRILL_IDS, ...parsed.completedDrillIds]))
         : [...USER_SUBMITTED_DRILL_IDS];
@@ -93,7 +117,7 @@ function getInitialMentorProgress(): PomMentorProgress {
         ...(parsed.masteryScores || {})
       };
 
-      level1Skills.forEach(skill => {
+      initialMasteredSkills.forEach(skill => {
         mergedScores[skill] = 4;
       });
 
@@ -107,15 +131,22 @@ function getInitialMentorProgress(): PomMentorProgress {
         }
       });
 
+      const mergedAttempts = {
+        ...defaultProgress.drillAttempts,
+        ...(parsed.drillAttempts || {})
+      };
+
       return {
         ...defaultProgress,
         ...parsed,
+        drillAttempts: mergedAttempts,
         savedCode: mergedSavedCode,
         completedDrillIds: validCompleted,
         masteryScores: mergedScores,
-        skillsMastered: Array.from(new Set(
-          POM_LEVELS.flatMap(lvl => lvl.focusSkills).filter(s => (mergedScores[s] || 0) >= 4)
-        )),
+        skillsMastered: Array.from(new Set([
+          ...initialMasteredSkills,
+          ...POM_LEVELS.flatMap(lvl => lvl.focusSkills).filter(s => (mergedScores[s] || 0) >= 4)
+        ])),
         skillsNeedingPractice: []
       };
     }
@@ -142,7 +173,10 @@ function getDrillFocusSkills(drill: PomMentorDrill): string[] {
 
 export function PomMentorArena() {
   const [progress, setProgress] = useState<PomMentorProgress>(getInitialMentorProgress);
-  const [selectedLevel, setSelectedLevel] = useState<number>(1);
+  const [selectedLevel, setSelectedLevel] = useState<number>(() => {
+    const drill = POM_MENTOR_DRILLS.find(d => d.id === progress.currentDrillId);
+    return drill ? drill.level : 2;
+  });
   const [showHint, setShowHint] = useState<boolean>(false);
   const [showSolution, setShowSolution] = useState<boolean>(false);
   const [showBeginnerGuide, setShowBeginnerGuide] = useState<boolean>(true);
@@ -262,9 +296,9 @@ export function PomMentorArena() {
       }
     });
 
-    const level1Skills = POM_LEVELS[0].focusSkills;
+    const initialMasteredSkills = [...POM_LEVELS[0].focusSkills, ...POM_LEVELS[1].focusSkills];
     const scores: Record<string, number> = { ...progress.masteryScores };
-    level1Skills.forEach(skill => {
+    initialMasteredSkills.forEach(skill => {
       scores[skill] = 4;
     });
 
@@ -273,7 +307,7 @@ export function PomMentorArena() {
       completedDrillIds: Array.from(new Set([...USER_SUBMITTED_DRILL_IDS, ...progress.completedDrillIds])),
       savedCode: restoredCode,
       masteryScores: scores,
-      skillsMastered: [...level1Skills],
+      skillsMastered: Array.from(new Set([...progress.skillsMastered, ...initialMasteredSkills])),
       skillsNeedingPractice: []
     };
 
@@ -281,7 +315,7 @@ export function PomMentorArena() {
     if (USER_SUBMITTED_DRILL_IDS.includes(activeDrill.id)) {
       setCode(restoredCode[activeDrill.id] || activeDrill.validation.solutionCode);
     }
-    setRestoreNotification('Restored your Level 1 drill submissions (Drills 1.1, 1.2, 1.3, 1.4, 1.5)!');
+    setRestoreNotification('Restored your Level 1 & Level 2 drill submissions (Drills 1.1 through 2.5)!');
     setTimeout(() => {
       setRestoreNotification(null);
     }, 4000);
@@ -831,7 +865,7 @@ export function PomMentorArena() {
             <button
               onClick={handleRestoreUserSubmissions}
               className="flex items-center space-x-1.5 px-3 py-2 bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 border border-indigo-500/40 rounded-xl text-xs font-semibold transition cursor-pointer shadow-sm hover:text-white"
-              title="Restore Level 1 submissions (Drills 1.1, 1.2, 1.3, 1.4)"
+              title="Restore Level 1 & Level 2 submissions (Drills 1.1–2.5)"
             >
               <Sparkles className="w-3.5 h-3.5 text-amber-300" />
               <span>Restore My Submissions</span>
