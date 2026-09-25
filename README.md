@@ -13,7 +13,7 @@
 
 ## 📌 Executive Summary
 
-Most test automation tutorials teach beginners how to record brittle scripts that break the moment a DOM class changes or an element animates into view. In contrast, **Playwright Automation Canvas & Mentor Lab** was engineered to train and evaluate Software Development Engineers in Test (SDETs) and QA Leads against **production-grade enterprise architecture standards**.
+**Playwright Automation Canvas & Mentor Lab** was engineered to train and evaluate Software Testers against **production-grade enterprise architecture standards**.
 
 This platform combines:
 1. **Interactive POM Architecture Gym** — 7 progressive mastery levels featuring 35 distinct architectural coding drills evaluated by real-time static analysis and strict anti-pattern rubrics.
