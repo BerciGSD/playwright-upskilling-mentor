@@ -1,4 +1,4 @@
-import { BookOpen, Code2, Terminal, Layers, Compass, BarChart3, Dumbbell } from 'lucide-react';
+import { BookOpen, Code2, Terminal, Layers, Compass, BarChart3, Dumbbell, Image as ImageIcon } from 'lucide-react';
 import { RoadmapStage } from '../types';
 
 interface HeaderProps {
@@ -7,6 +7,7 @@ interface HeaderProps {
   currentStage: RoadmapStage;
   masteredModulesCount: number;
   totalModulesCount: number;
+  onOpenScreenshots?: () => void;
 }
 
 export function Header({
@@ -15,6 +16,7 @@ export function Header({
   currentStage,
   masteredModulesCount,
   totalModulesCount,
+  onOpenScreenshots,
 }: HeaderProps) {
   const tabs = [
     { id: 'dashboard' as const, label: 'Student Dashboard', icon: BarChart3 },
@@ -65,6 +67,18 @@ export function Header({
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span>VS Code + Playwright</span>
             </div>
+
+            {onOpenScreenshots && (
+              <button
+                onClick={onOpenScreenshots}
+                className="flex items-center space-x-1.5 text-xs bg-cyan-950/70 hover:bg-cyan-900/80 text-cyan-300 hover:text-cyan-200 px-3 py-1.5 rounded-lg border border-cyan-800/80 transition cursor-pointer font-medium shadow-sm"
+                title="View & download repository screenshots ready for GitHub"
+              >
+                <ImageIcon className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="hidden sm:inline">GitHub Media Kit</span>
+                <span className="sm:hidden">Media</span>
+              </button>
+            )}
           </div>
         </div>
 

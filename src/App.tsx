@@ -19,8 +19,10 @@ import {
   Sparkles, 
   FileText, 
   Terminal,
-  ShieldAlert
+  ShieldAlert,
+  Image as ImageIcon
 } from 'lucide-react';
+import { ScreenshotsModal } from './components/ScreenshotsModal';
 
 const STORAGE_KEY = 'playwright_student_progress_v2';
 
@@ -171,6 +173,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'canvas' | 'drills' | 'project' | 'sandbox' | 'terminal' | 'dashboard' | 'pom-mentor'>('pom-mentor');
   const [currentModuleId, setCurrentModuleId] = useState<string>('pom');
   const [isRuleModalOpen, setIsRuleModalOpen] = useState<boolean>(false);
+  const [isScreenshotsModalOpen, setIsScreenshotsModalOpen] = useState<boolean>(false);
   const [checkpointModalModuleId, setCheckpointModalModuleId] = useState<string | null>(null);
 
   const [progress, setProgress] = useState<StudentProgress>(getInitialProgress);
@@ -380,6 +383,7 @@ export default function App() {
         currentStage={currentModule.stage}
         masteredModulesCount={masteredModulesCount}
         totalModulesCount={MODULES_DATA.length}
+        onOpenScreenshots={() => setIsScreenshotsModalOpen(true)}
       />
 
       {/* Roadmap Progression Bar */}
@@ -447,6 +451,12 @@ export default function App() {
       <RuleGuideModal
         isOpen={isRuleModalOpen}
         onClose={() => setIsRuleModalOpen(false)}
+      />
+
+      {/* GitHub Repository Screenshots & Media Kit Modal */}
+      <ScreenshotsModal
+        isOpen={isScreenshotsModalOpen}
+        onClose={() => setIsScreenshotsModalOpen(false)}
       />
 
       {/* Rule 14: End-of-Module No-Notes Checkpoint Modal */}

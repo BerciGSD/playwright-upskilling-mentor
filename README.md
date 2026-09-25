@@ -25,6 +25,31 @@ This platform combines:
 
 ---
 
+## 📸 Visual Previews & Screenshots
+
+### 🏋️ 1. POM Architecture Mentor Gym & Automated Evaluation
+> *Interactive 7-Level architectural gym testing encapsulation, custom fixtures, auto-waiting, and anti-pattern rubrics.*
+
+<p align="center">
+  <img src="docs/images/pom-mentor-arena.jpg" alt="POM Architecture Mentor Gym" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</p>
+
+### 🌐 2. Live Target Application Sandbox & Locator Inspection
+> *Realistic multi-scenario web app (dynamic tables, async checkout, dialogs) for live locator resilience testing.*
+
+<p align="center">
+  <img src="docs/images/target-app-sandbox.jpg" alt="Target App Sandbox" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</p>
+
+### 📊 3. Student Analytics & POM Skills Mastery Radar
+> *Real-time telemetry measuring anti-pattern elimination, drill completions, and SDET competency radar scores.*
+
+<p align="center">
+  <img src="docs/images/student-dashboard.jpg" alt="Student Competency Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</p>
+
+---
+
 ## 🚀 Key Modules & Capabilities
 
 ```
