@@ -25,27 +25,48 @@ This platform combines:
 
 ---
 
-## 📸 Visual Previews & Screenshots
+## 📸 Real Application Screenshots
 
-### 🏋️ 1. POM Architecture Mentor Gym & Automated Evaluation
-> *Interactive 7-Level architectural gym testing encapsulation, custom fixtures, auto-waiting, and anti-pattern rubrics.*
+### 📊 1. Full Student Learning Dashboard & Competency Radar
+> *Live telemetry showing 9/9 mastered curriculum stages, 100% anti-pattern elimination rate, and the 8-dimension POM Competency Radar chart.*
 
 <p align="center">
-  <img src="docs/images/pom-mentor-arena.jpg" alt="POM Architecture Mentor Gym" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+  <img src="docs/images/student-dashboard.png" alt="Full Student Learning Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
 </p>
 
-### 🌐 2. Live Target Application Sandbox & Locator Inspection
-> *Realistic multi-scenario web app (dynamic tables, async checkout, dialogs) for live locator resilience testing.*
+### 🏋️ 2. Independent POM Practice Mentor & Gym (Level 2 Complete)
+> *Interactive Level 2 ('Locator and Action Fluency') with all 5 drills completed, dynamic `.filter({ hasText })` Page Object code, and passed architectural rubric evaluation.*
 
 <p align="center">
-  <img src="docs/images/target-app-sandbox.jpg" alt="Target App Sandbox" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+  <img src="docs/images/pom-mentor-arena-level2.png" alt="Complete Level 2 in POM Mentor Gym" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
 </p>
 
-### 📊 3. Student Analytics & POM Skills Mastery Radar
-> *Real-time telemetry measuring anti-pattern elimination, drill completions, and SDET competency radar scores.*
+### 🧪 3. POM Drill Lab with POM Quick Reference Open
+> *Course Drill Lab for the Page Object Model module featuring interactive code editor, 3-tier hints, test runner, and the side-by-side POM Quick Reference cheat sheet.*
 
 <p align="center">
-  <img src="docs/images/student-dashboard.jpg" alt="Student Competency Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+  <img src="docs/images/pom-drill-lab-with-quick-reference.png" alt="POM Drill Lab with Quick Reference Open" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</p>
+
+### 📖 4. Fixtures Module Canvas Textbook
+> *Deep-dive textbook lesson on Custom Test Fixtures (`test.extend`), `storageState` session re-use, fixture lifecycle `use()` teardown, and eliminating test flakiness.*
+
+<p align="center">
+  <img src="docs/images/fixtures-canvas-textbook.png" alt="Fixtures Module Canvas Textbook" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</p>
+
+### 🌐 5. Live Target Application Sandbox & Locator Inspector
+> *Full-featured interactive target web app with dynamic filtered tables, multi-step checkout wizard, and Playwright semantic locator inspection badges (Resolution: 2880 × 1620 px).*
+
+<p align="center">
+  <img src="docs/images/target-app-sandbox.png" alt="Live Target Application Sandbox" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+</p>
+
+### 📦 6. Cumulative Production Test Suite Explorer
+> *Enterprise multi-file test repository demonstrating Page Object Model architecture, custom fixtures (`fixtures/test-base.ts`), `storageState` session bypass, and GitHub Actions CI workflow (Resolution: 2880 × 2264 px).*
+
+<p align="center">
+  <img src="docs/images/cumulative-project-suite.png" alt="Cumulative Production Test Suite Explorer" width="100%" style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
 </p>
 
 ---

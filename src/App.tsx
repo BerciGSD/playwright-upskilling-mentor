@@ -375,7 +375,7 @@ export default function App() {
   const activeCheckpointModule = MODULES_DATA.find((m) => m.id === checkpointModalModuleId);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div id="app-capture-area" className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500/30 selection:text-cyan-200">
       {/* Primary Header */}
       <Header
         activeTab={activeTab}
@@ -457,6 +457,8 @@ export default function App() {
       <ScreenshotsModal
         isOpen={isScreenshotsModalOpen}
         onClose={() => setIsScreenshotsModalOpen(false)}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
       />
 
       {/* Rule 14: End-of-Module No-Notes Checkpoint Modal */}
