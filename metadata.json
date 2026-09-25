@@ -1,0 +1,8 @@
+{
+  "name": "Playwright Automation Canvas \u0026 Mentor Lab",
+  "description": "Interactive Playwright \u0026 TypeScript learning canvas, cumulative test project workspace, and automated QA mentorship workbench for Linux (Ubuntu 24.04).",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
