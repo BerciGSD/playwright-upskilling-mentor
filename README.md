@@ -281,29 +281,6 @@ test.describe('E-Commerce Checkout Flow', () => {
 
 ---
 
-## 🎯 How to Showcase This Project in Interviews
-
-If you are an SDET, Automation Lead, or Senior QA Engineer presenting this repository to prospective engineering teams:
-
-1. **Highlight the Antipattern Engine**: Explain how the evaluator detects architectural anti-patterns (such as assertions inside POM classes, unawaited promises, or `waitForTimeout` calls) to enforce team-wide engineering discipline.
-2. **Discuss Test Sharding & CI Efficiency**: Walk through Level 7's matrix sharding implementation, explaining how splitting 1,000 tests across 4 Ubuntu runners cuts CI feedback loops from 20 minutes to 5 minutes without flakiness.
-3. **Showcase Composition vs Inheritance**: Demonstrate how Level 4 extracts root-scoped Component Objects rather than letting a monolithic `BasePage` accumulate 50 unrelated utility methods.
-4. **Demonstrate Network Virtualization**: Point to Level 6's route mocking drills to show how to test critical 500 error boundaries and latency states deterministically.
-
----
-
-## 🤝 Contributing
-
-Contributions are warmly welcome! Whether you are adding new drills to the POM gym, refining Ubuntu 24.04 setups, or improving the interactive sandbox:
-
-1. Fork the Project.
-2. Create your Feature Branch (`git checkout -b feature/NewDrillChallenge`).
-3. Commit your Changes (`git commit -m 'feat: add Level 5 fixture isolation drill'`).
-4. Push to the Branch (`git push origin feature/NewDrillChallenge`).
-5. Open a Pull Request.
-
----
-
 ## 📄 License
 
 Distributed under the **MIT License**. See `LICENSE` for more information.
