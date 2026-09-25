@@ -200,17 +200,17 @@ export function PomMentorArena() {
   } | null>(null);
 
   const [expandedRubricExamples, setExpandedRubricExamples] = useState<Record<number, boolean>>({
-    0: true,
-    1: true,
-    2: true,
-    3: true
+    0: false,
+    1: false,
+    2: false,
+    3: false
   });
-  const [showDrillRubricSection, setShowDrillRubricSection] = useState<boolean>(true);
+  const [showDrillRubricSection, setShowDrillRubricSection] = useState<boolean>(false);
   const [expandedDrillRubricCards, setExpandedDrillRubricCards] = useState<Record<number, boolean>>({
-    0: true,
-    1: true,
-    2: true,
-    3: true
+    0: false,
+    1: false,
+    2: false,
+    3: false
   });
   const [showRubricModal, setShowRubricModal] = useState<boolean>(false);
   const [rubricModalSelectedLevel, setRubricModalSelectedLevel] = useState<number>(1);
@@ -245,6 +245,9 @@ export function PomMentorArena() {
     setIsModifiedSinceReview(false);
     setIsEvaluating(false);
     setEvaluationTimestamp(null);
+    setShowDrillRubricSection(false);
+    setExpandedDrillRubricCards({ 0: false, 1: false, 2: false, 3: false });
+    setExpandedRubricExamples({ 0: false, 1: false, 2: false, 3: false });
   }, [activeDrill.id]);
 
   const handleSelectDrill = (drill: PomMentorDrill) => {
@@ -1295,21 +1298,23 @@ export function PomMentorArena() {
                   </h4>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const anyOpen = Object.values(expandedDrillRubricCards).some(Boolean);
-                      setExpandedDrillRubricCards({
-                        0: !anyOpen,
-                        1: !anyOpen,
-                        2: !anyOpen,
-                        3: !anyOpen
-                      });
-                    }}
-                    className="text-[10px] text-indigo-300 hover:text-indigo-200 font-semibold cursor-pointer px-2 py-0.5 bg-indigo-950/80 rounded border border-indigo-800/60 transition"
-                  >
-                    {Object.values(expandedDrillRubricCards).some(Boolean) ? 'Collapse All Examples' : 'Expand All Examples'}
-                  </button>
+                  {showDrillRubricSection && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const anyOpen = Object.values(expandedDrillRubricCards).some(Boolean);
+                        setExpandedDrillRubricCards({
+                          0: !anyOpen,
+                          1: !anyOpen,
+                          2: !anyOpen,
+                          3: !anyOpen
+                        });
+                      }}
+                      className="text-[10px] text-indigo-300 hover:text-indigo-200 font-semibold cursor-pointer px-2 py-0.5 bg-indigo-950/80 rounded border border-indigo-800/60 transition"
+                    >
+                      {Object.values(expandedDrillRubricCards).some(Boolean) ? 'Collapse All Examples' : 'Expand All Examples'}
+                    </button>
+                  )}
                   <button
                     type="button"
                     onClick={() => setShowDrillRubricSection(prev => !prev)}
@@ -1637,7 +1642,7 @@ export function PomMentorArena() {
                       <button
                         type="button"
                         onClick={() => {
-                          const anyOpen = Object.values(expandedRubricExamples).some(v => v !== false);
+                          const anyOpen = Object.values(expandedRubricExamples).some(Boolean);
                           const nextState: Record<number, boolean> = {};
                           reviewResult.scoreBreakdown?.forEach((_, i) => {
                             nextState[i] = !anyOpen;
@@ -1646,8 +1651,8 @@ export function PomMentorArena() {
                         }}
                         className="text-[11px] font-semibold px-2.5 py-1 bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/40 rounded-lg transition cursor-pointer flex items-center space-x-1"
                       >
-                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${Object.values(expandedRubricExamples).some(v => v !== false) ? 'rotate-180' : ''}`} />
-                        <span>{Object.values(expandedRubricExamples).some(v => v !== false) ? 'Collapse Code Examples' : 'Expand All Code Examples'}</span>
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${Object.values(expandedRubricExamples).some(Boolean) ? 'rotate-180' : ''}`} />
+                        <span>{Object.values(expandedRubricExamples).some(Boolean) ? 'Collapse Code Examples' : 'Expand All Code Examples'}</span>
                       </button>
                       <span className="text-xs font-mono px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-slate-200">
                         Score: <strong className={reviewResult.score === 4 ? 'text-emerald-400' : 'text-amber-400'}>{reviewResult.score}/4</strong>
@@ -1657,7 +1662,7 @@ export function PomMentorArena() {
 
                   <div className="space-y-3 pt-1">
                     {reviewResult.scoreBreakdown.map((item, idx) => {
-                      const isExpanded = expandedRubricExamples[idx] !== false;
+                      const isExpanded = Boolean(expandedRubricExamples[idx]);
                       return (
                         <div key={idx} className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 space-y-2 transition">
                           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
