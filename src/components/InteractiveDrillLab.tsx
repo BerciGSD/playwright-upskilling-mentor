@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import { POMQuickReference } from './POMQuickReference';
 import { POMTemplateGeneratorModal } from './POMTemplateGeneratorModal';
+import { HighlightedCodeSnippet } from './HighlightedCodeSnippet';
 import { CodeEditor } from './CodeEditor';
 
 interface InteractiveDrillLabProps {
@@ -618,11 +619,14 @@ export function InteractiveDrillLab({
 
           {/* Tier 3 */}
           {hintTier >= 3 && (
-            <div className="space-y-1 pt-2 border-t border-amber-950/80">
+            <div className="space-y-1.5 pt-2 border-t border-amber-950/80">
               <span className="text-xs font-semibold text-amber-300">Tier 3: Full Corrected Reference Code</span>
-              <div className="bg-slate-950 rounded-lg p-3 font-mono text-xs text-slate-200 border border-slate-800 overflow-x-auto">
-                <pre>{currentDrill.hints.tier3Solution}</pre>
-              </div>
+              <HighlightedCodeSnippet
+                code={currentDrill.hints.tier3Solution}
+                language="typescript"
+                filename={`solution-${currentDrill.id}.spec.ts`}
+                maxHeight="340px"
+              />
             </div>
           )}
         </div>

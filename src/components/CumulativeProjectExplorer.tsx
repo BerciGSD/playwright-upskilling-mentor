@@ -12,6 +12,7 @@ import {
   Sparkles,
   ShieldCheck
 } from 'lucide-react';
+import { HighlightedCodeSnippet } from './HighlightedCodeSnippet';
 
 export function CumulativeProjectExplorer() {
   const [selectedFilePath, setSelectedFilePath] = useState<string>(CUMULATIVE_PROJECT_FILES[0].path);
@@ -146,16 +147,14 @@ export function CumulativeProjectExplorer() {
 
           {/* Code Viewer Body */}
           <div className="p-4 bg-slate-950 overflow-x-auto flex-1 font-mono text-xs leading-relaxed text-slate-200">
-            <pre>
-              {selectedFile.content.split('\n').map((line, idx) => (
-                <div key={idx} className="table-row hover:bg-slate-900/80">
-                  <span className="table-cell text-slate-600 select-none pr-4 text-right text-[11px] w-8">
-                    {idx + 1}
-                  </span>
-                  <span className="table-cell whitespace-pre">{line}</span>
-                </div>
-              ))}
-            </pre>
+            <HighlightedCodeSnippet
+              code={selectedFile.content}
+              language={selectedFile.language || 'typescript'}
+              filename={selectedFile.path}
+              showHeader={false}
+              maxHeight="700px"
+              className="border-0 bg-transparent shadow-none"
+            />
           </div>
         </div>
       </div>

@@ -1364,18 +1364,30 @@ export function PomMentorArena() {
                               <div className="text-xs font-bold text-rose-300 flex items-center space-x-1.5">
                                 <span>❌ Anti-Pattern (What to Avoid)</span>
                               </div>
-                              <pre className="p-2.5 bg-slate-950 rounded border border-rose-900/50 font-mono text-[10px] text-rose-200 overflow-x-auto whitespace-pre leading-relaxed">
-                                {item.badExample}
-                              </pre>
+                              <HighlightedCodeSnippet
+                                code={item.badExample}
+                                language="typescript"
+                                showHeader={false}
+                                textSize="text-[10px]"
+                                padding="p-2.5"
+                                maxHeight="200px"
+                                className="border-rose-900/50 bg-slate-950/90"
+                              />
                             </div>
 
                             <div className="bg-emerald-950/30 border border-emerald-900/60 rounded-lg p-2.5 space-y-1.5">
                               <div className="text-xs font-bold text-emerald-300 flex items-center space-x-1.5">
                                 <span>✅ SDET Best Practice (Production Standard)</span>
                               </div>
-                              <pre className="p-2.5 bg-slate-950 rounded border border-emerald-900/50 font-mono text-[10px] text-emerald-200 overflow-x-auto whitespace-pre leading-relaxed">
-                                {item.goodExample}
-                              </pre>
+                              <HighlightedCodeSnippet
+                                code={item.goodExample}
+                                language="typescript"
+                                showHeader={false}
+                                textSize="text-[10px]"
+                                padding="p-2.5"
+                                maxHeight="200px"
+                                className="border-emerald-900/50 bg-slate-950/90"
+                              />
                             </div>
                           </div>
                         )}
@@ -1715,9 +1727,15 @@ export function PomMentorArena() {
                                   <div className="text-xs font-bold text-rose-300 flex items-center space-x-1.5">
                                     <span>❌ Anti-Pattern (What to Avoid)</span>
                                   </div>
-                                  <pre className="p-2.5 bg-slate-950 rounded border border-rose-900/60 font-mono text-[10px] text-rose-200 overflow-x-auto whitespace-pre leading-relaxed">
-                                    {item.badExample}
-                                  </pre>
+                                  <HighlightedCodeSnippet
+                                    code={item.badExample}
+                                    language="typescript"
+                                    showHeader={false}
+                                    textSize="text-[10px]"
+                                    padding="p-2.5"
+                                    maxHeight="200px"
+                                    className="border-rose-900/60 bg-slate-950/90"
+                                  />
                                 </div>
                               )}
                               {item.goodExample && (
@@ -1725,9 +1743,15 @@ export function PomMentorArena() {
                                   <div className="text-xs font-bold text-emerald-300 flex items-center space-x-1.5">
                                     <span>✅ SDET Best Practice (Production Standard)</span>
                                   </div>
-                                  <pre className="p-2.5 bg-slate-950 rounded border border-emerald-900/60 font-mono text-[10px] text-emerald-200 overflow-x-auto whitespace-pre leading-relaxed">
-                                    {item.goodExample}
-                                  </pre>
+                                  <HighlightedCodeSnippet
+                                    code={item.goodExample}
+                                    language="typescript"
+                                    showHeader={false}
+                                    textSize="text-[10px]"
+                                    padding="p-2.5"
+                                    maxHeight="200px"
+                                    className="border-emerald-900/60 bg-slate-950/90"
+                                  />
                                 </div>
                               )}
                             </div>
@@ -1871,18 +1895,30 @@ export function PomMentorArena() {
                               <div className="text-xs font-bold text-rose-300 flex items-center space-x-1.5">
                                 <span>❌ Anti-Pattern (What to Avoid)</span>
                               </div>
-                              <pre className="p-2.5 bg-slate-950 rounded border border-rose-900/50 font-mono text-[10px] text-rose-200 overflow-x-auto whitespace-pre leading-relaxed">
-                                {item.badExample}
-                              </pre>
+                              <HighlightedCodeSnippet
+                                code={item.badExample}
+                                language="typescript"
+                                showHeader={false}
+                                textSize="text-[10px]"
+                                padding="p-2.5"
+                                maxHeight="200px"
+                                className="border-rose-900/50 bg-slate-950/90"
+                              />
                             </div>
 
                             <div className="bg-emerald-950/30 border border-emerald-900/60 rounded-lg p-2.5 space-y-1.5">
                               <div className="text-xs font-bold text-emerald-300 flex items-center space-x-1.5">
                                 <span>✅ SDET Best Practice (Production Standard)</span>
                               </div>
-                              <pre className="p-2.5 bg-slate-950 rounded border border-emerald-900/50 font-mono text-[10px] text-emerald-200 overflow-x-auto whitespace-pre leading-relaxed">
-                                {item.goodExample}
-                              </pre>
+                              <HighlightedCodeSnippet
+                                code={item.goodExample}
+                                language="typescript"
+                                showHeader={false}
+                                textSize="text-[10px]"
+                                padding="p-2.5"
+                                maxHeight="200px"
+                                className="border-emerald-900/50 bg-slate-950/90"
+                              />
                             </div>
                           </div>
                         </div>

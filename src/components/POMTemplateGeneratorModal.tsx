@@ -18,6 +18,7 @@ import {
   ShieldCheck,
   Send
 } from 'lucide-react';
+import { HighlightedCodeSnippet } from './HighlightedCodeSnippet';
 
 export interface ElementDefinition {
   id: string;
@@ -789,31 +790,23 @@ test('completes workflow using ${className}', async ({ page }) => {
             <div className="flex-1 overflow-y-auto space-y-4">
               {(outputView === 'class' || outputView === 'both') && (
                 <div className="space-y-1.5">
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span className="font-mono text-cyan-300">pages/{pageName.endsWith('Page') ? pageName : `${pageName}Page`}.ts</span>
-                    <span className="text-[11px] text-emerald-400 flex items-center gap-1">
-                      <ShieldCheck className="w-3 h-3" />
-                      <span>Constructor Initialized</span>
-                    </span>
-                  </div>
-                  <pre className="bg-slate-950 p-4 rounded-xl border border-slate-800/90 text-xs font-mono text-slate-200 overflow-x-auto leading-relaxed max-h-[500px]">
-                    {generatedClassCode}
-                  </pre>
+                  <HighlightedCodeSnippet
+                    code={generatedClassCode}
+                    language="typescript"
+                    filename={`pages/${pageName.endsWith('Page') ? pageName : `${pageName}Page`}.ts`}
+                    maxHeight="450px"
+                  />
                 </div>
               )}
 
               {(outputView === 'spec' || outputView === 'both') && (
                 <div className="space-y-1.5">
-                  <div className="flex items-center justify-between text-xs text-slate-400">
-                    <span className="font-mono text-emerald-300">tests/e2e/{pageName.toLowerCase().replace(/page$/, '')}.spec.ts</span>
-                    <span className="text-[11px] text-cyan-400 flex items-center gap-1">
-                      <ShieldCheck className="w-3 h-3" />
-                      <span>Assertions in Spec</span>
-                    </span>
-                  </div>
-                  <pre className="bg-slate-950 p-4 rounded-xl border border-slate-800/90 text-xs font-mono text-slate-200 overflow-x-auto leading-relaxed max-h-[400px]">
-                    {generatedSpecCode}
-                  </pre>
+                  <HighlightedCodeSnippet
+                    code={generatedSpecCode}
+                    language="typescript"
+                    filename={`tests/e2e/${pageName.toLowerCase().replace(/page$/, '')}.spec.ts`}
+                    maxHeight="400px"
+                  />
                 </div>
               )}
             </div>

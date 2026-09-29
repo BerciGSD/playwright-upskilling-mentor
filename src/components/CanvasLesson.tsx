@@ -10,8 +10,8 @@ import {
   Copy, 
   ArrowRight,
   Sparkles,
-  ExternalLink
 } from 'lucide-react';
+import { HighlightedCodeSnippet } from './HighlightedCodeSnippet';
 
 interface CanvasLessonProps {
   module: ModuleData;
@@ -87,9 +87,13 @@ export function CanvasLesson({ module, onGoToDrills }: CanvasLessonProps) {
             <p className="text-sm text-slate-300 leading-relaxed">
               {module.justInTimeTs.explanation}
             </p>
-            <div className="bg-slate-950 rounded-lg p-3 font-mono text-xs text-indigo-200/90 border border-slate-800 overflow-x-auto">
-              <pre>{module.justInTimeTs.codeExample}</pre>
-            </div>
+            <HighlightedCodeSnippet
+              code={module.justInTimeTs.codeExample}
+              language="typescript"
+              filename={`${module.justInTimeTs.concept.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.ts`}
+              className="mt-3 border-indigo-950/80"
+              maxHeight="320px"
+            />
           </div>
         </div>
       </div>
@@ -110,33 +114,15 @@ export function CanvasLesson({ module, onGoToDrills }: CanvasLessonProps) {
               {sec.content}
             </div>
 
-            {/* Code Snippet with Copy */}
+            {/* Code Snippet with Syntax Highlighting and Copy */}
             {sec.codeSnippet && (
               <div className="space-y-2 mt-4">
-                {sec.codeSnippet.caption && (
-                  <div className="flex items-center justify-between text-xs text-slate-400 px-1">
-                    <span className="font-mono text-slate-400">{sec.codeSnippet.caption}</span>
-                    <button
-                      onClick={() => handleCopy(sec.codeSnippet!.code, idx)}
-                      className="flex items-center space-x-1 hover:text-cyan-400 transition cursor-pointer text-[11px]"
-                    >
-                      {copiedIndex === idx ? (
-                        <>
-                          <Check className="w-3.5 h-3.5 text-emerald-400" />
-                          <span className="text-emerald-400">Copied!</span>
-                        </>
-                      ) : (
-                        <>
-                          <Copy className="w-3.5 h-3.5" />
-                          <span>Copy code</span>
-                        </>
-                      )}
-                    </button>
-                  </div>
-                )}
-                <div className="bg-slate-950 rounded-xl p-4 border border-slate-800/80 font-mono text-xs text-slate-200 overflow-x-auto shadow-inner">
-                  <pre className="leading-relaxed">{sec.codeSnippet.code}</pre>
-                </div>
+                <HighlightedCodeSnippet
+                  code={sec.codeSnippet.code}
+                  language={sec.codeSnippet.language || 'typescript'}
+                  filename={sec.codeSnippet.caption || `example-${idx + 1}.ts`}
+                  maxHeight="420px"
+                />
               </div>
             )}
 
