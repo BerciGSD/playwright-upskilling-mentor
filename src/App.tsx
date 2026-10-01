@@ -170,7 +170,7 @@ function getInitialProgress(): StudentProgress {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'canvas' | 'drills' | 'project' | 'sandbox' | 'terminal' | 'dashboard' | 'pom-mentor'>('pom-mentor');
+  const [activeTab, setActiveTab] = useState<'canvas' | 'drills' | 'project' | 'sandbox' | 'terminal' | 'dashboard' | 'pom-mentor'>('dashboard');
   const [currentModuleId, setCurrentModuleId] = useState<string>('pom');
   const [isRuleModalOpen, setIsRuleModalOpen] = useState<boolean>(false);
   const [isScreenshotsModalOpen, setIsScreenshotsModalOpen] = useState<boolean>(false);
